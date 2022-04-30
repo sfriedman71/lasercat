@@ -1,10 +1,13 @@
 pragma solidity ^0.5.0;
 
 contract FisherYatesShuffle {
-
+   
+   // the array that gets shuffled
    uint[] public arr;
+   
    uint public arraySize;
 
+   // dummy for what VRF would fill in
    uint public randomNumber = 997654321;
 
    constructor(uint _arraySize) public{
@@ -12,7 +15,8 @@ contract FisherYatesShuffle {
      arr = new uint[](arraySize);
    }
 
-function initArray() public returns( uint ){
+  // run this first, or include in constructor
+  function initArray() public returns( uint ){
       arr = new uint[](arraySize);
       uint i = 0;
 
@@ -23,6 +27,7 @@ function initArray() public returns( uint ){
       
    }
 
+   // Active ingredient
    function shuffleArray() public returns( uint ){
       uint i = arr.length;
       uint temp;
