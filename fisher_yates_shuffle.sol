@@ -1,46 +1,36 @@
-pragma solidity ^0.5.0;
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
 
 contract FisherYatesShuffle {
-   
-   // the array that gets shuffled
-   uint[] public arr;
-   
-   uint public arraySize;
 
-   // dummy for what VRF would fill in
-   uint public randomNumber = 997654321;
 
-   constructor(uint _arraySize) public{
-     arraySize = _arraySize;
-     arr = new uint[](arraySize);
-   }
+  constructor() {}
 
-  // run this first, or include in constructor
-  function initArray() public returns( uint ){
-      arr = new uint[](arraySize);
-      uint i = 0;
+  function shuffle(uint _arraySize, uint _randomWord) pure public returns( uint , uint ){
+    uint arraySize = _arraySize;
+    uint randomWord = _randomWord;
 
-      while (i < arraySize ) {
-        arr[i] = i + 1;
-        i++;
-      }
-      
-   }
+    uint[] memory arr = new uint[](arraySize);
 
-   // Active ingredient
-   function shuffleArray() public returns( uint ){
-      uint i = arr.length;
-      uint temp;
-      uint r;
+    uint temp;
+    uint r;
 
-      while (i > 1 ) {
-        i--;
-        temp = arr[i];
-        r = randomNumber % i;
-        arr[i] = arr[r];
-        arr[r] = temp;
+    // initialize array values in sequence
+    for ( uint i = 0; i < arraySize; i++) {
+      arr[i] = i+1;
+    }
 
-      }
-   }
+    // shuffle
+    for( uint i = arr.length-1; i > 1; i-- ){
+      temp = arr[i];
+      r = randomWord % i;
+      arr[i] = arr[r];
+      arr[r] = temp;
+    }
+
+
+    return( arr[0], arr[arr.length-1] );
+  }
+
 
 }
