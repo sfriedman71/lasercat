@@ -13,6 +13,6 @@ contract KeepersSample  {
     function rebalanceIndex() external returns (bool success) { }
     function rebalanceIndexId(uint indexId) external returns (bool success) { }
     function rebalancePositionId(uint indexId) external returns (bool success) { }
-    function updateTWAP(uint indexId) external returns (bool success) { }  
+    function updateTWAP() external returns (bool success) { }  
     function refreshBoxScores() external returns (bool success) { }  
 }
